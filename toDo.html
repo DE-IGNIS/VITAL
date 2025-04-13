@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      .to-do-list {
+        max-width: 400px;
+        margin: auto;
+        font-family: Arial, sans-serif;
+      }
+      .add-button,
+      .delete-button,
+      .move-button {
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="to-do-list">
+      <h1>To-Do List</h1>
+      <div>
+        <input type="text" id="taskInput" placeholder="Enter a task.." />
+        <button class="add-button" onclick="addTask()">Add</button>
+      </div>
+      <ol id="taskList"></ol>
+    </div>
+
+    <script>
+      let tasks = [];
+
+      function renderTasks() {
+        const taskList = document.getElementById("taskList");
+        taskList.innerHTML = "";
+
+        tasks.forEach((task, index) => {
+          const li = document.createElement("li");
+
+          const span = document.createElement("span");
+          span.className = "text";
+          span.textContent = task;
+          li.appendChild(span);
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.className = "delete-button";
+          deleteBtn.onclick = () => removeTask(index);
+          li.appendChild(deleteBtn);
+
+          const upBtn = document.createElement("button");
+          upBtn.textContent = "👆";
+          upBtn.className = "move-button";
+          upBtn.onclick = () => moveTaskUp(index);
+          li.appendChild(upBtn);
+
+          const downBtn = document.createElement("button");
+          downBtn.textContent = "👇";
+          downBtn.className = "move-button";
+          downBtn.onclick = () => moveTaskDown(index);
+          li.appendChild(downBtn);
+
+          taskList.appendChild(li);
+        });
+      }
+
+      function addTask() {
+        const input = document.getElementById("taskInput");
+        const newTask = input.value.trim();
+        if (newTask !== "") {
+          tasks.push(newTask);
+          input.value = "";
+          renderTasks();
+        }
+      }
+
+      function removeTask(index) {
+        tasks.splice(index, 1);
+        renderTasks();
+      }
+
+      function moveTaskUp(index) {
+        if (index > 0) {
+          [tasks[index - 1], tasks[index]] = [tasks[index], tasks[index - 1]];
+          renderTasks();
+        }
+      }
+
+      function moveTaskDown(index) {
+        if (index < tasks.length - 1) {
+          [tasks[index + 1], tasks[index]] = [tasks[index], tasks[index + 1]];
+          renderTasks();
+        }
+      }
+
+      // Optional: allow pressing Enter to add task
+      document.getElementById("taskInput").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          addTask();
+        }
+      });
+    </script>
+  </body>
+</html>

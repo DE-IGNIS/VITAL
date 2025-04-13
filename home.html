@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find My Faculty</title>
+    <style>
+      /* Adding some basic styles for better visual appeal */
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+      input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+      }
+      input:focus {
+        outline: none;
+        border-color: #0078d4;
+        box-shadow: 0 0 5px rgba(0, 120, 212, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <label for="faculty-name">
+      Name:
+      <input
+        id="faculty-name"
+        name="facultyName"
+        type="text"
+        placeholder="Enter faculty name"
+        aria-label="Enter faculty name"
+        required
+      />
+    </label>
+    <label for="cabin-number">
+      Cabin:
+      <input
+        id="cabin-number"
+        name="cabin-number"
+        type="text"
+        placeholder="Enter cabin number "
+        aria-label="Enter cabin-number "
+        required
+      />
+    </label>
+    <label for="school">
+      School:
+      <input
+        id="school"
+        name="school"
+        type="text"
+        placeholder="Enter school "
+        aria-label="Enter school "
+        required
+      />
+    </label>
+  </body>
+</html>
